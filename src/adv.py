@@ -54,29 +54,29 @@ while True:
         print('Goodbye!')
         break
 
-    if user_input.lower() == 'north':
+    if user_input.lower() == 'n':
         if p1.current_room.n_to is None:
             print('You cannot move north from your current room.\n')
             continue
         p1.current_room = p1.current_room.n_to
-        print(f'You have moved to the {p1.current_room.name}.\n')
-    elif user_input == 'south':
+        print(f'You have moved to the {p1.current_room}.\n')
+    elif user_input == 's':
         if p1.current_room.s_to is None:
             print('You cannot move south from your current room.\n')
             continue
         p1.current_room = p1.current_room.s_to
-        print(f'You have moved to the {p1.current_room.name}.\n')
-    elif user_input == 'east':
+        print(f'You have moved to the {p1.current_room}.\n')
+    elif user_input == 'e':
         if p1.current_room.e_to is None:
             print('You cannot move east from your current room.\n')
             continue
         p1.current_room = p1.current_room.e_to
-        print(f'You have moved to the {p1.current_room.name}.\n')
-    elif user_input == 'west':
+        print(f'You have moved to the {p1.current_room}.\n')
+    elif user_input == 'w':
         if p1.current_room.w_to is None:
             print('You cannot move west from your current room.\n')
             continue
         p1.current_room = p1.current_room.w_to
-        print(f'You have moved to the {p1.current_room.name}.\n')
+        print(f'You have moved to the {p1.current_room}.\n')
 
 
