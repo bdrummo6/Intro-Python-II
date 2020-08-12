@@ -46,8 +46,37 @@ p1 = Player('Brad', room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+print(f'Hello {p1.name}, welcome to the game!')
+print(f'{p1.name}, you are currently in the {p1.current_room.name}.')
 while True:
-    print(f'Hello {p1.name}, welcome to the game!')
-    print(f'{p1.name}, you are currently in the {p1.current_room.name}.')
     user_input = input('Input a direction to move rooms or press q to quit the game: ')
+    if user_input.lower() == 'q':
+        print('Goodbye!')
+        break
+
+    if user_input.lower() == 'north':
+        if p1.current_room.n_to is None:
+            print('You cannot move north from your current room.\n')
+            continue
+        p1.current_room = p1.current_room.n_to
+        print(f'You have moved to the {p1.current_room.name}.\n')
+    elif user_input == 'south':
+        if p1.current_room.s_to is None:
+            print('You cannot move south from your current room.\n')
+            continue
+        p1.current_room = p1.current_room.s_to
+        print(f'You have moved to the {p1.current_room.name}.\n')
+    elif user_input == 'east':
+        if p1.current_room.e_to is None:
+            print('You cannot move east from your current room.\n')
+            continue
+        p1.current_room = p1.current_room.e_to
+        print(f'You have moved to the {p1.current_room.name}.\n')
+    elif user_input == 'west':
+        if p1.current_room.w_to is None:
+            print('You cannot move west from your current room.\n')
+            continue
+        p1.current_room = p1.current_room.w_to
+        print(f'You have moved to the {p1.current_room.name}.\n')
+
 
