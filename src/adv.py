@@ -52,22 +52,43 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+def set_items(pl, verb, it_name):
+    it = None
+    it_2 = None
+    for item in pl.current_room.items:
+        if item.name == it_name:
+            it = item
 
-def get_room_items(rm):
-    if rm.items is None:
-        print(f'The {rm.name} contains no items.')
-    else:
-        print(f'{rm.name} contains the following items: ')
-        for it in rm.items:
-            return it
+    for item2 in pl.items:
+        if item2.name == it_name:
+            it_2 = item2
+
+    count_room = pl.current_room.items.count(it)
+    count_player = pl.items.count(it_2)
+    if verb == 'take':
+        if count_room == 0:
+            print(f'The item with the name {it_name} does not exist in this room!')
+        pl.items.append(it)
+        pl.current_room.items.remove(it)
+    elif verb == 'drop':
+        if count_player == 0:
+            print(f'The item with the name {it_name} is not in your collection!')
+        pl.items.remove(it_2)
+        pl.current_room.items.append(it_2)
 
 
-def get_player_items(pl):
-    print(f'{pl.name} has the following items: ')
-    if pl.items is None:
-        return 'You currently have no items'
-    for it in pl.items:
-        return it
+def get_items(obj):
+    for item in obj.items:
+        return item
+
+
+def print_items(obj):
+    if obj.items == []:
+        print(f'{obj.name} currently has no items')
+        return
+    print(f'{obj.name} has the following items: ')
+    for item in obj.items:
+        print(item)
 
 
 # Make a new player object that is currently in the 'outside'
@@ -87,38 +108,54 @@ p1 = Player(name_input, room['outside'])
 
 print(f'Hello {p1.name}, welcome to the game!')
 
-while True:
-    user_input = input("\nEnter a direction to move in ('n', 's', 'e', 'w') or 'q' to quit: ")
-    if user_input == 'q':
-        print('Goodbye!')
-        break
 
-    if user_input == 'n':
-        if p1.current_room.n_to is None:
-            print(f'You cannot move north from the {p1.current_room.name}!')
-            continue
-        p1.current_room = p1.current_room.n_to
-        print(f'You have moved to the {p1.current_room}.')
-        print(get_room_items(p1.current_room))
-    elif user_input == 's':
-        if p1.current_room.s_to is None:
-            print(f'You cannot move south from the {p1.current_room.name}!')
-            continue
-        p1.current_room = p1.current_room.s_to
-        print(f'You have moved to the {p1.current_room}.')
-        print(get_room_items(p1.current_room))
-    elif user_input == 'e':
-        if p1.current_room.e_to is None:
-            print(f'You cannot move east from the {p1.current_room.name}')
-            continue
-        p1.current_room = p1.current_room.e_to
-        print(f'You have moved to the {p1.current_room}.')
-        print(get_room_items(p1.current_room))
-    elif user_input == 'w':
-        if p1.current_room.w_to is None:
-            print(f'You cannot move west from the {p1.current_room.name}!')
-            continue
-        p1.current_room = p1.current_room.w_to
-        print(f'You have moved to the {p1.current_room}.')
-        print(get_room_items(p1.current_room))
+while True:
+    print(f'You are currently in the {p1.current_room.name}!')
+    print_items(p1.current_room)
+    print_items(p1)
+
+    user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'take item_name' or 'drop item_name' "
+                       "('q' to quit): ")
+    u_input = user_input.split(' ')
+
+    if len(u_input) == 1:
+        if u_input[0] == 'q':
+            print('Goodbye!')
+            break
+        elif u_input[0] == 'n':
+            if p1.current_room.n_to is None:
+                print(f'You cannot move north from the {p1.current_room.name}!')
+                continue
+            p1.current_room = p1.current_room.n_to
+            print(f'You have moved to the {p1.current_room}.')
+            print_items(p1.current_room)
+            print_items(p1)
+        elif u_input[0] == 's':
+            if p1.current_room.s_to is None:
+                print(f'You cannot move south from the {p1.current_room.name}!')
+                continue
+            p1.current_room = p1.current_room.s_to
+            print(f'You have moved to the {p1.current_room}.')
+            print_items(p1.current_room)
+            print_items(p1)
+        elif u_input[0] == 'e':
+            if p1.current_room.e_to is None:
+                print(f'You cannot move east from the {p1.current_room.name}')
+                continue
+            p1.current_room = p1.current_room.e_to
+            print(f'You have moved to the {p1.current_room}.')
+            print_items(p1.current_room)
+            print_items(p1)
+        elif u_input[0] == 'w':
+            if p1.current_room.w_to is None:
+                print(f'You cannot move west from the {p1.current_room.name}!')
+                continue
+            p1.current_room = p1.current_room.w_to
+            print(f'You have moved to the {p1.current_room}.')
+            print_items(p1.current_room)
+            print_items(p1)
+
+    if len(u_input) == 2:
+        set_items(p1, u_input[0], u_input[1])
+
 
