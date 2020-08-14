@@ -70,6 +70,7 @@ def set_items(pl, verb, it_name):
             print(f'The item with the name {it_name} does not exist in this room!')
         pl.items.append(it)
         pl.current_room.items.remove(it)
+        it.on_take()
     elif verb == 'drop':
         if count_player == 0:
             print(f'The item with the name {it_name} is not in your collection!')

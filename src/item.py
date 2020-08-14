@@ -7,3 +7,6 @@ class Item:
 
     def __str__(self):
         return f'\t- Item: {self.name}\n\t\t description: {self.description}'
+
+    def on_take(self):
+        print(f'You have picked up the {self.name}')
