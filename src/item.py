@@ -9,4 +9,4 @@ class Item:
         return f'\t- Item: {self.name}\n\t\t description: {self.description}'
 
     def on_take(self):
-        print(f'You have picked up the {self.name}')
+        print(f'You have picked up the {self.name}!')
