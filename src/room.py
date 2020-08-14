@@ -13,6 +13,7 @@ class Room:
         self.n_to = None
 
     def __str__(self):
-        return f'{self.name}, {self.description}'
+        return f'{self.name}\n\t- description: {self.description}'
+
 
 
