@@ -6,4 +6,4 @@ class Item:
         self.description = description
 
     def __str__(self):
-        return f'\t- name: {self.name}\n\t\t description: {self.description}'
+        return f'\t- Item: {self.name}\n\t\t description: {self.description}'
