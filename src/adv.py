@@ -51,6 +51,7 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+
 def set_items(pl, verb, it_name):
     it = None
     it_2 = None
@@ -124,41 +125,43 @@ while True:
                        "('q' to quit): ")
     u_input = user_input.split(' ')
 
+    if len(u_input) < 1 or len(u_input) > 2:
+        print('Your input is invalid, please try again.\n')
+        continue
+
+    if u_input[0] != 'q' and u_input[0] != 'n' and u_input[0] != 's' and u_input[0] != 'e' and u_input[0] != 'w' \
+            and u_input[0] != 'take' and u_input[0] != 'drop':
+        print('Your input is invalid, please try again!\n')
+        continue
+
     if len(u_input) == 1:
         if u_input[0] == 'q':
             print('Goodbye!')
             break
         elif u_input[0] == 'n':
             if p1.current_room.n_to is None:
-                print(f'You cannot move north from the {p1.current_room.name}!')
+                print(f'You cannot move north from the {p1.current_room.name}!\n')
                 continue
             p1.current_room = p1.current_room.n_to
-            print_items(p1.current_room)
-            print_items(p1)
         elif u_input[0] == 's':
             if p1.current_room.s_to is None:
-                print(f'You cannot move south from the {p1.current_room.name}!')
+                print(f'You cannot move south from the {p1.current_room.name}!\n')
                 continue
             p1.current_room = p1.current_room.s_to
-            print_items(p1.current_room)
-            print_items(p1)
         elif u_input[0] == 'e':
             if p1.current_room.e_to is None:
                 print(f'You cannot move east from the {p1.current_room.name}')
                 continue
             p1.current_room = p1.current_room.e_to
-            print(f'You have moved to the {p1.current_room}.')
-            print_items(p1.current_room)
-            print_items(p1)
         elif u_input[0] == 'w':
             if p1.current_room.w_to is None:
                 print(f'You cannot move west from the {p1.current_room.name}!')
                 continue
             p1.current_room = p1.current_room.w_to
-            print_items(p1.current_room)
-            print_items(p1)
 
     if len(u_input) == 2:
         set_items(p1, u_input[0], u_input[1])
+
+
 
 
