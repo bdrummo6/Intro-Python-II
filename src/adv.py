@@ -1,7 +1,6 @@
 from room import Room
 from player import Player
 from item import Item
-import textwrap
 
 # Create list of items
 items = [
@@ -105,12 +104,16 @@ def print_items(obj):
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
 name_input = input(f'Enter your name: ')
+
+while len(name_input) == 0:
+    print('\nYour name must be at least one character long!')
+    name_input = input(f'Enter your name: ')
 
 p1 = Player(name_input, room['outside'])
 
-print(f'Hello {p1.name}, welcome to the game!')
-
+print(f'\nHello {p1.name}, welcome to the game!')
 
 while True:
     print(f'You are currently in the {p1.current_room.name}!')
@@ -130,7 +133,6 @@ while True:
                 print(f'You cannot move north from the {p1.current_room.name}!')
                 continue
             p1.current_room = p1.current_room.n_to
-            print(f'You have moved to the {p1.current_room}.')
             print_items(p1.current_room)
             print_items(p1)
         elif u_input[0] == 's':
@@ -138,7 +140,6 @@ while True:
                 print(f'You cannot move south from the {p1.current_room.name}!')
                 continue
             p1.current_room = p1.current_room.s_to
-            print(f'You have moved to the {p1.current_room}.')
             print_items(p1.current_room)
             print_items(p1)
         elif u_input[0] == 'e':
@@ -154,7 +155,6 @@ while True:
                 print(f'You cannot move west from the {p1.current_room.name}!')
                 continue
             p1.current_room = p1.current_room.w_to
-            print(f'You have moved to the {p1.current_room}.')
             print_items(p1.current_room)
             print_items(p1)
 
