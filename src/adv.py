@@ -65,17 +65,16 @@ def check_input(inp):
 
 def set_items(pl, verb, it_name):
     it = None
-    it_2 = None
     for item in pl.current_room.items:
         if item.name == it_name:
             it = item
 
-    for item2 in pl.items:
-        if item2.name == it_name:
-            it_2 = item2
+    for item in pl.items:
+        if item.name == it_name:
+            it = item
 
     count_room = pl.current_room.items.count(it)
-    count_player = pl.items.count(it_2)
+    count_player = pl.items.count(it)
     if verb == 'take':
         if count_room == 0:
             print(f'The item with the name {it_name} does not exist in this room!')
@@ -87,9 +86,9 @@ def set_items(pl, verb, it_name):
         if count_player == 0:
             print(f'The item with the name {it_name} is not in your collection!')
             return
-        pl.remove_item(it_2)
-        pl.current_room.add_item(it_2)
-        it_2.on_drop()
+        pl.remove_item(it)
+        pl.current_room.add_item(it)
+        it.on_drop()
 
 # Make a new player object that is currently in the 'outside'
 # Write a loop that:
