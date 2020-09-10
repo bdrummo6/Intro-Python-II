@@ -89,6 +89,7 @@ def set_items(pl, verb, it_name):
             return
         pl.remove_item(it_2)
         pl.current_room.add_item(it_2)
+        it_2.on_drop()
 
 # Make a new player object that is currently in the 'outside'
 # Write a loop that:
