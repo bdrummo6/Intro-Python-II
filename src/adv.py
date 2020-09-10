@@ -127,25 +127,13 @@ while True:
             print('Goodbye!')
             break
         elif u_input[0] == 'n':
-            if p1.current_room.n_to is None:
-                print(f'You cannot move north from the {p1.current_room.name}!\n')
-                continue
-            p1.current_room = p1.current_room.n_to
+            p1.move_room('north', p1.current_room.n_to)
         elif u_input[0] == 's':
-            if p1.current_room.s_to is None:
-                print(f'You cannot move south from the {p1.current_room.name}!\n')
-                continue
-            p1.current_room = p1.current_room.s_to
+            p1.move_room('south', p1.current_room.s_to)
         elif u_input[0] == 'e':
-            if p1.current_room.e_to is None:
-                print(f'You cannot move east from the {p1.current_room.name}')
-                continue
-            p1.current_room = p1.current_room.e_to
+            p1.move_room('east', p1.current_room.e_to)
         elif u_input[0] == 'w':
-            if p1.current_room.w_to is None:
-                print(f'You cannot move west from the {p1.current_room.name}!')
-                continue
-            p1.current_room = p1.current_room.w_to
+            p1.move_room('west', p1.current_room.w_to)
 
     if len(u_input) == 2:
         set_items(p1, u_input[0], u_input[1])

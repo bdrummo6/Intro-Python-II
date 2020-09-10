@@ -22,7 +22,7 @@ class Room:
         self.items.remove(item)
 
     def print_items(self):
-        if self.items == []:
+        if not self.items:
             print(f'The {self.name} currently has no items')
             return
         print(f'The {self.name} has the following items: ')
