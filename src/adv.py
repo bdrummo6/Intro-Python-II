@@ -51,6 +51,17 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+def check_input(inp):
+    pl_inp = inp.split(' ')
+
+    if len(pl_inp) > 2:
+        print(f'The number of inputs is invalid, please try again.\n')
+        return
+    elif pl_inp[0] != 'q' and pl_inp[0] != 'n' and pl_inp[0] != 's' and pl_inp[0] != 'e' and pl_inp[0] != 'w' \
+            and pl_inp[0] != 'take' and pl_inp[0] != 'drop':
+        print(f'Your input is invalid, please try again!\n')
+        return
+
 
 def set_items(pl, verb, it_name):
     it = None
@@ -69,30 +80,15 @@ def set_items(pl, verb, it_name):
         if count_room == 0:
             print(f'The item with the name {it_name} does not exist in this room!')
             return
-        pl.items.append(it)
-        pl.current_room.items.remove(it)
+        pl.add_item(it)
+        pl.current_room.remove_item(it)
         it.on_take()
     elif verb == 'drop':
         if count_player == 0:
             print(f'The item with the name {it_name} is not in your collection!')
             return
-        pl.items.remove(it_2)
-        pl.current_room.items.append(it_2)
-
-
-def get_items(obj):
-    for item in obj.items:
-        return item
-
-
-def print_items(obj):
-    if obj.items == []:
-        print(f'{obj.name} currently has no items')
-        return
-    print(f'{obj.name} has the following items: ')
-    for item in obj.items:
-        print(item)
-
+        pl.remove_item(it_2)
+        pl.current_room.add_item(it_2)
 
 # Make a new player object that is currently in the 'outside'
 # Write a loop that:
@@ -118,21 +114,13 @@ print(f'\nHello {p1.name}, welcome to the game!')
 
 while True:
     print(f'You are currently in the {p1.current_room.name}!')
-    print_items(p1.current_room)
-    print_items(p1)
+    p1.current_room.print_items()
+    p1.print_items()
 
     user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'take item_name' or 'drop item_name' "
                        "('q' to quit): ")
+    check_input(user_input)
     u_input = user_input.split(' ')
-
-    if len(u_input) < 1 or len(u_input) > 2:
-        print('Your input is invalid, please try again.\n')
-        continue
-
-    if u_input[0] != 'q' and u_input[0] != 'n' and u_input[0] != 's' and u_input[0] != 'e' and u_input[0] != 'w' \
-            and u_input[0] != 'take' and u_input[0] != 'drop':
-        print('Your input is invalid, please try again!\n')
-        continue
 
     if len(u_input) == 1:
         if u_input[0] == 'q':
