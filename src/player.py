@@ -13,3 +13,16 @@ class Player:
     def __str__(self):
         return f'{self.name}, {self.current_room}'
 
+    def add_item(self, item):
+        self.items.append(item)
+
+    def remove_item(self, item):
+        self.items.remove(item)
+
+    def print_items(self):
+        if self.items == []:
+            print(f'{self.name} currently has no items')
+            return
+        print(f'{self.name} has the following items: ')
+        for item in self.items:
+            print(item)

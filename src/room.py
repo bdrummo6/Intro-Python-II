@@ -15,5 +15,23 @@ class Room:
     def __str__(self):
         return f'{self.name}\n\t- description: {self.description}'
 
+    def add_item(self, item):
+        self.items.append(item)
+
+    def remove_item(self, item):
+        self.items.remove(item)
+
+    def print_items(self):
+        if self.items == []:
+            print(f'The {self.name} currently has no items')
+            return
+        print(f'The {self.name} has the following items: ')
+        for item in self.items:
+            print(item)
+
+
+
+
+
 
 
