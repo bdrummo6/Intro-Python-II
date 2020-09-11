@@ -19,6 +19,8 @@ class Player:
             print('Please try another direction.\n')
             return
         self.current_room = next_room
+        print(f'You have moved {direction} to the {self.current_room}!')
+        self.current_room.print_items()
 
     def add_item(self, item):
         self.items.append(item)
@@ -47,6 +49,8 @@ class Player:
             self.add_item(affected_item)
             self.current_room.remove_item(affected_item)
             affected_item.on_take()
+            print(f'You are currently in the {self.current_room}!')
+            self.current_room.print_items()
         elif verb == 'drop':
             if count_player == 0:
                 print(f'The item with the name {item_name} is not in your collection!\n')
@@ -54,6 +58,8 @@ class Player:
             self.remove_item(affected_item)
             self.current_room.add_item(affected_item)
             affected_item.on_drop()
+            print(f'You are currently in the {self.current_room}!')
+            self.current_room.print_items()
 
     def print_items(self):
         if not self.items:
