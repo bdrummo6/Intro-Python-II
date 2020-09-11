@@ -88,7 +88,7 @@ print(f'\nHello {p1.name}, welcome to the game!')
 print("Enter 'q' at anytime to quit the game.\n")
 
 while True:
-    print(f'You are currently in the {p1.current_room.name}!')
+    print(f'You are currently in the {p1.current_room}!')
     p1.current_room.print_items()
 
     user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'get/take item_name' or 'drop item_name', "
