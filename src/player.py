@@ -26,6 +26,35 @@ class Player:
     def remove_item(self, item):
         self.items.remove(item)
 
+    def set_items(self, verb, item_name):
+        it = None
+
+        for item in self.current_room.items:
+            if item.name == item_name:
+                it = item
+
+        for item in self.items:
+            if item.name == item_name:
+                it = item
+
+        count_player = self.items.count(it)
+        count_room = self.current_room.items.count(it)
+
+        if verb == 'take':
+            if count_room == 0:
+                print(f'The item with the name {item_name} does not exist in this room!')
+                return
+            self.add_item(it)
+            self.current_room.remove_item(it)
+            it.on_take()
+        elif verb == 'drop':
+            if count_player == 0:
+                print(f'The item with the name {item_name} is not in your collection!')
+                return
+            self.remove_item(it)
+            self.current_room.add_item(it)
+            it.on_drop()
+
     def print_items(self):
         if not self.items:
             print(f'{self.name} currently has no items')
@@ -33,3 +62,4 @@ class Player:
         print(f'{self.name} has the following items: ')
         for item in self.items:
             print(item)
+

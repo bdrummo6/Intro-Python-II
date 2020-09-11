@@ -63,33 +63,6 @@ def check_input(inp):
         return
 
 
-def set_items(pl, verb, it_name):
-    it = None
-    for item in pl.current_room.items:
-        if item.name == it_name:
-            it = item
-
-    for item in pl.items:
-        if item.name == it_name:
-            it = item
-
-    count_room = pl.current_room.items.count(it)
-    count_player = pl.items.count(it)
-    if verb == 'take':
-        if count_room == 0:
-            print(f'The item with the name {it_name} does not exist in this room!')
-            return
-        pl.add_item(it)
-        pl.current_room.remove_item(it)
-        it.on_take()
-    elif verb == 'drop':
-        if count_player == 0:
-            print(f'The item with the name {it_name} is not in your collection!')
-            return
-        pl.remove_item(it)
-        pl.current_room.add_item(it)
-        it.on_drop()
-
 # Make a new player object that is currently in the 'outside'
 # Write a loop that:
 #
@@ -136,7 +109,7 @@ while True:
             p1.move_room('west', p1.current_room.w_to)
 
     if len(u_input) == 2:
-        set_items(p1, u_input[0], u_input[1])
+        p1.set_items(u_input[0], u_input[1])
 
 
 
