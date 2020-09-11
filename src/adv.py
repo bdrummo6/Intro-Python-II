@@ -58,7 +58,8 @@ def check_input(inp):
         print(f'The number of inputs is invalid, please try again.\n')
         return
     elif pl_inp[0] != 'q' and pl_inp[0] != 'n' and pl_inp[0] != 's' and pl_inp[0] != 'e' and pl_inp[0] != 'w' \
-            and pl_inp[0] != 'take' and pl_inp[0] != 'drop':
+            and pl_inp[0] != 'get' and pl_inp[0] != 'take' and pl_inp[0] != 'drop' and pl_inp[0] != 'i' and \
+            pl_inp[0] != 'inventory':
         print(f'Your input is invalid, please try again!\n')
         return
 
@@ -84,14 +85,14 @@ while len(name_input) == 0:
 p1 = Player(name_input, room['outside'])
 
 print(f'\nHello {p1.name}, welcome to the game!')
+print("Enter 'q' at anytime to quit the game.\n")
 
 while True:
     print(f'You are currently in the {p1.current_room.name}!')
     p1.current_room.print_items()
-    p1.print_items()
 
-    user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'take item_name' or 'drop item_name' "
-                       "('q' to quit): ")
+    user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'get/take item_name' or 'drop item_name', "
+                       "('i' or 'inventory' to see your items): ")
     check_input(user_input)
     u_input = user_input.split(' ')
 
@@ -107,6 +108,8 @@ while True:
             p1.move_room('east', p1.current_room.e_to)
         elif u_input[0] == 'w':
             p1.move_room('west', p1.current_room.w_to)
+        elif u_input[0] == 'i' or u_input[0] == 'inventory':
+            p1.print_items()
 
     if len(u_input) == 2:
         p1.set_items(u_input[0], u_input[1])

@@ -23,7 +23,7 @@ class Room:
 
     def print_items(self):
         if not self.items:
-            print(f'The {self.name} currently has no items')
+            print(f'The {self.name} currently has no items.')
             return
         print(f'The {self.name} has the following items: ')
         for item in self.items:

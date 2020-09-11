@@ -40,7 +40,7 @@ class Player:
         count_player = self.items.count(it)
         count_room = self.current_room.items.count(it)
 
-        if verb == 'take':
+        if verb == 'get' or verb == 'take':
             if count_room == 0:
                 print(f'The item with the name {item_name} does not exist in this room!')
                 return
@@ -57,9 +57,10 @@ class Player:
 
     def print_items(self):
         if not self.items:
-            print(f'{self.name} currently has no items')
+            print(f'{self.name} currently has no items.\n')
             return
         print(f'{self.name} has the following items: ')
         for item in self.items:
             print(item)
+        print()
 
