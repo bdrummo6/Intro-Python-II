@@ -14,6 +14,7 @@ items = [
     Item('notebook', 'This notebook has plenty of space for all your thoughts.'),
     Item('pencil', 'A #2 pencil sharpened and ready for you to write or draw anything.'),
     Item('helmet', 'A helmet that can protect you in certain situations.'),
+    Item('pot', 'A pot for cooking some very tasty stew.'),
 ]
 
 # Declare all the rooms
@@ -33,6 +34,9 @@ room = {
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already  
                       been completely emptied by earlier adventurers. The only exit is to the south.""",
                      [items[4], items[8]]),
+
+    'kitchen': Room("Kitchen", """The smell of the food entices you into this kitchen full of yummy food.""",
+                     [items[10]]),
 }
 
 # Link rooms together
@@ -42,6 +46,7 @@ room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
 room['overlook'].s_to = room['foyer']
+room['overlook'].e_to = room['kitchen']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
@@ -51,7 +56,9 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+
 def check_input(inp):
+    inp = inp.lower()
     pl_inp = inp.split(' ')
 
     if len(pl_inp) > 2:
@@ -92,7 +99,7 @@ while True:
     p1.current_room.print_items()
 
     user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'get/take item_name' or 'drop item_name', "
-                       "('i' or 'inventory' to see your items): ")
+                       "('i' or 'inventory' to see your items): ").lower()
     check_input(user_input)
     u_input = user_input.split(' ')
 
@@ -101,13 +108,13 @@ while True:
             print('Goodbye!')
             break
         elif u_input[0] == 'n':
-            p1.move_room('north', p1.current_room.n_to)
+            p1.move_rooms('north', p1.current_room.n_to)
         elif u_input[0] == 's':
-            p1.move_room('south', p1.current_room.s_to)
+            p1.move_rooms('south', p1.current_room.s_to)
         elif u_input[0] == 'e':
-            p1.move_room('east', p1.current_room.e_to)
+            p1.move_rooms('east', p1.current_room.e_to)
         elif u_input[0] == 'w':
-            p1.move_room('west', p1.current_room.w_to)
+            p1.move_rooms('west', p1.current_room.w_to)
         elif u_input[0] == 'i' or u_input[0] == 'inventory':
             p1.print_items()
 

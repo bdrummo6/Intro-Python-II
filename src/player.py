@@ -13,9 +13,9 @@ class Player:
     def __str__(self):
         return f'{self.name}, {self.current_room}'
 
-    def move_room(self, direction, next_room):
+    def move_rooms(self, direction, next_room):
         if next_room is None:
-            print(f'You cannot move to {direction} from the {self.current_room.name}.')
+            print(f'You cannot move {direction} from the {self.current_room.name}.')
             print('Please try another direction.\n')
             return
         self.current_room = next_room
@@ -27,39 +27,39 @@ class Player:
         self.items.remove(item)
 
     def set_items(self, verb, item_name):
-        it = None
+        affected_item = None
 
         for item in self.current_room.items:
             if item.name == item_name:
-                it = item
+                affected_item = item
 
         for item in self.items:
             if item.name == item_name:
-                it = item
+                affected_item = item
 
-        count_player = self.items.count(it)
-        count_room = self.current_room.items.count(it)
+        count_player = self.items.count(affected_item)
+        count_room = self.current_room.items.count(affected_item)
 
         if verb == 'get' or verb == 'take':
             if count_room == 0:
-                print(f'The item with the name {item_name} does not exist in this room!')
+                print(f'The item with the name {item_name} does not exist in this room!\n')
                 return
-            self.add_item(it)
-            self.current_room.remove_item(it)
-            it.on_take()
+            self.add_item(affected_item)
+            self.current_room.remove_item(affected_item)
+            affected_item.on_take()
         elif verb == 'drop':
             if count_player == 0:
-                print(f'The item with the name {item_name} is not in your collection!')
+                print(f'The item with the name {item_name} is not in your collection!\n')
                 return
-            self.remove_item(it)
-            self.current_room.add_item(it)
-            it.on_drop()
+            self.remove_item(affected_item)
+            self.current_room.add_item(affected_item)
+            affected_item.on_drop()
 
     def print_items(self):
         if not self.items:
-            print(f'{self.name} currently has no items.\n')
+            print(f'You currently have no items in your inventory.\n')
             return
-        print(f'{self.name} has the following items: ')
+        print(f'You have the following items in your inventory: ')
         for item in self.items:
             print(item)
         print()
