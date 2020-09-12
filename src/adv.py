@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from lightsource import LightSource
 
 # Create list of items
 items = [
@@ -19,25 +20,28 @@ items = [
 
 # Declare all the rooms
 room = {
-    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons", [items[0]]),
+    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons.", True, [items[0]]),
 
-    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east.""",
+    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east.""", True,
                   [items[1], items[5]]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling into the darkness. 
                       Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
-                     [items[2], items[6], items[9]]),
+                     False, [items[2], items[6], items[9]]),
 
     'narrow': Room("Narrow Passage", """The narrow passage bends here from west to north. 
-                      The smell of gold permeates the air.""", [items[3], items[7]]),
+                      The smell of gold permeates the air.""", False, [items[3], items[7]]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already  
-                      been completely emptied by earlier adventurers. The only exit is to the south.""",
+                      been completely emptied by earlier adventurers. The only exit is to the south.""", False,
                      [items[4], items[8]]),
 
-    'kitchen': Room("Kitchen", """The smell of the food entices you into this kitchen full of yummy food.""",
+    'kitchen': Room("Kitchen", """The smell of the food entices you into this kitchen full of yummy food.""", True,
                      [items[10]]),
 }
+
+light_1 = LightSource('lamp', 'This will brighten the room!')
+room['narrow'].items.append(light_1)
 
 # Link rooms together
 
@@ -94,7 +98,7 @@ p1 = Player(name_input, room['outside'])
 print(f'\nHello {p1.name}, welcome to the game!')
 print("Enter 'q' at anytime to quit the game.\n")
 
-print(f'You are currently in the {p1.current_room}!')
+print(f'You are currently in the {p1.current_room}')
 p1.current_room.print_items()
 
 while True:

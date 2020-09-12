@@ -1,11 +1,14 @@
 # Implement a class to hold room information. This should have name and description attributes.
 
+from lightsource import LightSource
+
 class Room:
-    def __init__(self, name, description, items=None):
+    def __init__(self, name, description, is_light, items=None):
         if items is None:
             items = []
         self.name = name
         self.description = description
+        self.is_light = is_light
         self.items = items
         self.w_to = None
         self.e_to = None
@@ -28,6 +31,8 @@ class Room:
         print(f'The {self.name} has the following items: ')
         for item in self.items:
             print(item)
+
+
 
 
 
