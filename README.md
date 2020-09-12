@@ -126,38 +126,38 @@ In arbitrary order:
 
 * Subclass items into treasures
 
-* Add a subclass to `Item` called `LightSource`.
+- [X] Add a subclass to `Item` called `LightSource`.
 
-  * During world creation, add a `lamp` `LightSource` to a convenient `Room`.
+  - [X] During world creation, add a `lamp` `LightSource` to a convenient `Room`.
 
-  * Override `on_drop` in `LightSource` that tells the player "It's not wise to
+  - [X] Override `on_drop` in `LightSource` that tells the player "It's not wise to
   drop your source of light!" if the player drops it. (But still lets them drop
   it.)
 
-  * Add an attribute to `Room` called `is_light` that is `True` if the `Room` is
+  - [X] Add an attribute to `Room` called `is_light` that is `True` if the `Room` is
   naturally illuminated, or `False` if a `LightSource` is required to see what
   is in the room.
 
-  * Modify the main loop to test if there is light in the `Room` (i.e. if
+  - [X] Modify the main loop to test if there is light in the `Room` (i.e. if
     `is_light` is `True` **or** there is a `LightSource` item in the `Room`'s
     contents **or** if there is a `LightSource` item in the `Player`'s contents).
 
-  * If there is light in the room, display name, description, and contents as
+  - [X] If there is light in the room, display name, description, and contents as
     normal.
 
-  * If there isn't, print out "It's pitch black!" instead.
+  - [X] If there isn't, print out "It's pitch black!" instead.
 
   * Hint: `isinstance` might help you figure out if there's a `LightSource`
     among all the nearby `Item`s.
 
-  * Modify the `get`/`take` code to print "Good luck finding that in the dark!" if
+  - [X] Modify the `get`/`take` code to print "Good luck finding that in the dark!" if
   the user tries to pick up an `Item` in the dark.
 
 * Add methods to notify items when they are picked up or dropped
 
 * Add light and darkness to the game
 
-* Add more items to the game.
+- [X] Add more items to the game.
 
 * Add a way to win.
 
