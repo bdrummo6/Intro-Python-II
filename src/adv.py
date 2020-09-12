@@ -69,13 +69,13 @@ def check_input(inp):
     pl_inp = inp.split(' ')
 
     if len(pl_inp) > 2:
-        print(f'The number of inputs is invalid, please try again.')
-        return
+        return False
     elif pl_inp[0] != 'q' and pl_inp[0] != 'n' and pl_inp[0] != 's' and pl_inp[0] != 'e' and pl_inp[0] != 'w' \
             and pl_inp[0] != 'get' and pl_inp[0] != 'take' and pl_inp[0] != 'drop' and pl_inp[0] != 'i' and \
             pl_inp[0] != 'inventory':
-        print(f'Your input is invalid, please try again!')
-        return
+        return False
+    else:
+        return True
 
 
 # Make a new player object that is currently in the 'outside'
@@ -114,8 +114,13 @@ for item in p1.current_room.items:
 while True:
     user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'get/take item_name' or 'drop item_name', "
                        "('i' or 'inventory' to see your items): ").lower()
-    check_input(user_input)
-    u_input = user_input.split(' ')
+
+    is_valid = check_input(user_input)
+    if is_valid:
+        u_input = user_input.split(' ')
+    else:
+        print(f'Your input is invalid, please try again!')
+        continue
 
     if len(u_input) == 1:
         if u_input[0] == 'q':
