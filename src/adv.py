@@ -15,7 +15,7 @@ items = [
     Item('notebook', 'This notebook has plenty of space for all your thoughts.'),
     Item('pencil', 'A #2 pencil sharpened and ready for you to write or draw anything.'),
     Item('helmet', 'A helmet that can protect you in certain situations.'),
-    Item('pot', 'A pot for cooking some very tasty stew.'),
+    Item('pot', 'A pot for cooking some very tasty stew.'),  # Stretch: Created Item 'pot'
 ]
 
 # Declare all the rooms
@@ -36,11 +36,14 @@ room = {
                       been completely emptied by earlier adventurers. The only exit is to the south.""", False,
                      [items[4], items[8]]),
 
+    # Stretch: Created kitchen room
     'kitchen': Room("Kitchen", """The smell of the food entices you into this kitchen full of yummy food.""", True,
                      [items[10]]),
 }
 
+# Stretch: Added LightSource object to list of items and the 'narrow' room
 light_1 = LightSource('lamp', 'This will brighten the room!')
+items.append(light_1)
 room['narrow'].items.append(light_1)
 
 # Link rooms together
@@ -99,7 +102,14 @@ print(f'\nHello {p1.name}, welcome to the game!')
 print("Enter 'q' at anytime to quit the game.\n")
 
 print(f'You are currently in the {p1.current_room}')
-p1.current_room.print_items()
+for item in p1.current_room.items:
+    if isinstance(item, LightSource) or p1.current_room.is_light:
+        p1.current_room.print_items()
+        for item_2 in p1.items:
+            if isinstance(item_2, LightSource):
+                p1.current_room.print_items()
+    else:
+        print("It's pitch black!")
 
 while True:
     user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'get/take item_name' or 'drop item_name', "
