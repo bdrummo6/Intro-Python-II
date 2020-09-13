@@ -8,7 +8,7 @@ class Room:
             items = []
         self.name = name
         self.description = description
-        self.is_light = is_light
+        self.is_light = is_light  # Stretch: True if room is naturally lite, False if not
         self.items = items
         self.w_to = None
         self.e_to = None
@@ -24,6 +24,7 @@ class Room:
     def remove_item(self, item):
         self.items.remove(item)
 
+    # Function prints all the items in a room
     def print_items(self):
         if not self.items:
             print(f'The {self.name} currently has no items.')
