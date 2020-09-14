@@ -73,14 +73,14 @@ room['treasure'].s_to = room['narrow']
 
 # Function checks user input and if correct returns True, otherwise False
 def check_input(inp):
-    inp = inp.lower()
-    inp = inp.split(' ')
+    inp = inp.lower().split(' ')
 
     if len(inp) > 2:
         return False
-    elif inp[0] != 'q' and inp[0] != 'n' and inp[0] != 's' and inp[0] != 'e' and inp[0] != 'w' \
-            and inp[0] != 'get' and inp[0] != 'take' and inp[0] != 'drop' and inp[0] != 'i' and \
-            inp[0] != 'inventory':
+    elif len(inp) == 1 and inp[0] != 'q' and inp[0] != 'n' and inp[0] != 's' and inp[0] != 'e' and inp[0] != 'w' \
+            and inp[0] != 'i' and inp[0] != 'inventory':
+        return False
+    elif len(inp) == 2 and inp[0] != 'get' and inp[0] != 'take' and inp[0] != 'drop':
         return False
     else:
         return True
@@ -119,9 +119,10 @@ while True:
                        "('i' or 'inventory' to see your items): ").lower()
 
     is_valid = check_input(user_input)
+
     if is_valid:
         user_input = user_input.split(' ')
-    else:
+    elif not is_valid:
         print('\nYour input is invalid, please try again!')
         continue
 
