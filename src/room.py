@@ -2,7 +2,7 @@
 
 
 class Room:
-    def __init__(self, name, description, is_light, items=None):
+    def __init__(self, name, description, is_light=None, items=None):
         if items is None:
             items = []
         self.name = name

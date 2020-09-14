@@ -15,44 +15,64 @@ items = [
     Item('notebook', 'This notebook has plenty of space for all your thoughts.'),
     Item('pencil', 'A #2 pencil sharpened and ready for you to write or draw anything.'),
     Item('helmet', 'A helmet that can protect you in certain situations.'),
-    Item('pot', 'A pot for cooking some very tasty stew.'),  # Stretch: Created Item 'pot' and placed in 'Kitchen'
 ]
 
 
 # Declare all the rooms
 room = {
     # is_light == True
-    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons.", True, [items[0]]),
+    'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons."),
 
     # is_light == True
-    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east.""", True,
-                  [items[1], items[5]]),
+    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty passages run north and east."""),
 
     # is_light == False
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling into the darkness. 
-                      Ahead to the north, a light flickers in the distance, but there is no way across the chasm.""",
-                     False, [items[2], items[6], items[9]]),
+                      Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
 
     # is_light == False
     'narrow': Room("Narrow Passage",
-                   """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
-                   False, [items[3], items[7]]),
+                   """The narrow passage bends here from west to north. The smell of gold permeates the air."""),
 
     # is_light == False
     'treasure': Room("Treasure Chamber",
                      """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by 
-                   earlier adventurers. The only exit is to the south.""", False, [items[4], items[8]]),
-
-    # Stretch: Created kitchen room
-    # is_light == True
-    'kitchen': Room("Kitchen", """The smell of the food entices you into this kitchen full of yummy food.""", True,
-                     [items[10]]),
+                   earlier adventurers. The only exit is to the south."""),
 }
+
+# Set initial items for each room
+room['outside'].add_item([items[0]])  # sword
+room['foyer'].add_item(items[1])  # book
+room['foyer'].add_item(items[5])  # gloves
+room['overlook'].add_item(items[2])  # chest
+room['overlook'].add_item(items[6])  # bicycle
+room['overlook'].add_item(items[9])  # helmet
+room['narrow'].add_item(items[3])  # cup
+room['narrow'].add_item(items[7])  # notebook
+room['treasure'].add_item(items[4])  # basketball
+room['treasure'].add_item(items[8])  # pencil
+
+# Stretch: Add a new room
+kitchen = Room("Kitchen", "The smell of the food entices you into this kitchen full of yummy food.")
+room['kitchen'] = kitchen
+
+# Create a new item and add it to kitchen
+pot = Item('pot', 'A pot for cooking some very tasty stew.')
+items.append(pot)
+room['kitchen'].add_item(pot)
+
+# Stretch: Set the is_light value for each room
+room['outside'].is_light = True
+room['foyer'].is_light = True
+room['overlook'].is_light = False
+room['narrow'].is_light = False
+room['treasure'].is_light = False
+room['kitchen'].is_light = True
 
 # Stretch: Added LightSource object to list of items and the 'narrow' room
 light_1 = LightSource('lamp', 'This will brighten the room!')
 items.append(light_1)
-room['narrow'].items.append(light_1)
+room['narrow'].add_item(light_1)
 
 # Link rooms together
 room['outside'].n_to = room['foyer']
@@ -128,7 +148,7 @@ while True:
 
     if len(user_input) == 1:
         if user_input[0] == 'q':
-            print('Goodbye!')
+            print('\nGoodbye!')
             break
         elif user_input[0] == 'n':
             p1.move_rooms('north', p1.current_room.n_to)
