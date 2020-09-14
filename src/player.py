@@ -86,7 +86,7 @@ class Player:
     # Function prints the inventory of the player's items
     def print_items(self):
         if not self.items:
-            print(f'You currently have no items in your inventory.\n')
+            print(f'You currently have no items in your inventory.')
             return
         print(f'You have the following items in your inventory: ')
         for item in self.items:
