@@ -120,7 +120,7 @@ while True:
     if is_valid:
         user_input = user_input.split(' ')
     else:
-        print(f'Your input is invalid, please try again!')
+        print('\nYour input is invalid, please try again!')
         continue
 
     if len(user_input) == 1:
