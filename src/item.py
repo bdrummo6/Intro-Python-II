@@ -6,7 +6,7 @@ class Item:
         self.description = description
 
     def __str__(self):
-        return f'\t- Item: {self.name}\n\t\t description: {self.description}'
+        return f'\t- {self.name}\n\t\t description: {self.description}'
 
     # Function called when player retrieves an item in a room that is naturally lite or a light source exist in the room
     def on_take(self):
