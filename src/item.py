@@ -10,8 +10,8 @@ class Item:
 
     # Function called when player retrieves an item in a room that is naturally lite or a light source exist in the room
     def on_take(self):
-        print(f'You have picked up the {self.name}!')
+        print(f'\nYou have picked up the {self.name}!\n')
 
     # Function called when player drops an item in a room that is not a light source
     def on_drop(self):
-        print(f'You have dropped the {self.name}!')
+        print(f'\nYou have dropped the {self.name}!\n')

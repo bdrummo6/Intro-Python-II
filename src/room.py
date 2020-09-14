@@ -27,9 +27,9 @@ class Room:
     # Function prints all the items in a room
     def print_items(self):
         if not self.items:
-            print(f'The {self.name} currently has no items.')
+            print(f'\nThe {self.name} currently has no items.')
             return
-        print(f'The {self.name} has the following items: ')
+        print(f'\nThe {self.name} has the following items: ')
         for item in self.items:
             print(item)
 
