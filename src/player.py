@@ -1,8 +1,6 @@
-# Write a class to hold player information, e.g. what room they are in
-# currently.
+# Write a class to hold player information, e.g. what room they are in currently.
 
 from lightsource import LightSource
-
 
 class Player:
     def __init__(self, name, current_room, items=None):
@@ -70,7 +68,7 @@ class Player:
             self.add_item(it)
             self.current_room.remove_item(it)
             it.on_take()
-            print(f'You are currently in the {self.current_room}!')
+            print(f'You are currently in the {self.current_room}')
             self.current_room.print_items()
         elif verb == 'drop':
             if count_player == 0:  # if the item is not in the player's inventory
@@ -91,4 +89,3 @@ class Player:
         print(f'\nYou have the following items in your inventory: ')
         for item in self.items:
             print(item)
-        print()
