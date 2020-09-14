@@ -25,7 +25,7 @@ class Player:
                 if isinstance(item_2, LightSource):
                     self.current_room.print_items()
                     return
-        print("\nIt's pitch black!")
+        print("It's pitch black!")
 
     # Function moves the player to the room of the input direction, if a room exists in the direction input
     def move_rooms(self, direction, next_room):
@@ -70,7 +70,7 @@ class Player:
             self.add_item(it)
             self.current_room.remove_item(it)
             it.on_take()
-            print(f'\nYou are currently in the {self.current_room}!')
+            print(f'You are currently in the {self.current_room}!')
             self.current_room.print_items()
         elif verb == 'drop':
             if count_player == 0:  # if the item is not in the player's inventory
