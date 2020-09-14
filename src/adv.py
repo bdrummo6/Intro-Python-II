@@ -34,13 +34,14 @@ room = {
                      False, [items[2], items[6], items[9]]),
 
     # is_light == False
-    'narrow': Room("Narrow Passage", """The narrow passage bends here from west to north. 
-                      The smell of gold permeates the air.""", False, [items[3], items[7]]),
+    'narrow': Room("Narrow Passage",
+                   """The narrow passage bends here from west to north. The smell of gold permeates the air.""",
+                   False, [items[3], items[7]]),
 
     # is_light == False
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already  
-                      been completely emptied by earlier adventurers. The only exit is to the south.""", False,
-                     [items[4], items[8]]),
+    'treasure': Room("Treasure Chamber",
+                     """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by 
+                   earlier adventurers. The only exit is to the south.""", False, [items[4], items[8]]),
 
     # Stretch: Created kitchen room
     # is_light == True
