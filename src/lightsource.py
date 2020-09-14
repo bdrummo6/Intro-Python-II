@@ -6,4 +6,4 @@ class LightSource(Item):
         super().__init__(name, description)
 
     def on_drop(self):
-        print("It's not wise to drop your source of light!")
+        print("\nIt's not wise to drop your source of light!\n")
