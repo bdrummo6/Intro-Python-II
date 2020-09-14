@@ -57,12 +57,12 @@ class Player:
         count_room = self.current_room.items.count(it)
 
         if verb == 'get' or verb == 'take':
+            if count_room == 0:  # if the item is not in the current room
+                print(f'\nThe item with the name {item_name} does not exist in this room!')
+                return
             # Stretch: if the room is dark and player tries to retrieve an item
             if not isinstance(it, LightSource) and not self.current_room.is_light:
                 print('\nGood Luck finding that in the dark!')
-                return
-            if count_room == 0:  # if the item is not in the current room
-                print(f'\nThe item with the name {item_name} does not exist in this room!')
                 return
             # code below runs if the item exists and the room is not dark
             self.add_item(it)
