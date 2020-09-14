@@ -18,6 +18,7 @@ items = [
     Item('pot', 'A pot for cooking some very tasty stew.'),  # Stretch: Created Item 'pot' and placed in 'Kitchen'
 ]
 
+
 # Declare all the rooms
 room = {
     # is_light == True
