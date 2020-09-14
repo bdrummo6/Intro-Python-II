@@ -8,7 +8,7 @@ items = [
     Item('sword', 'This is a very sharp sword.'),
     Item('book', 'This book is full of magical spells.'),
     Item('chest', 'This chest can be used to store all your stuff.'),
-    Item('lighter', 'This can be used to light a fire on cold nights.'),
+    Item('cup', 'This will be of good use when you need a cold drink.'),
     Item('basketball', 'This basketball is full of air and ready for a game.'),
     Item('gloves', 'A pair of gloves that are fire retardant.'),
     Item('bicycle', 'This bicycle is in good shape and ready to be ridden.'),
