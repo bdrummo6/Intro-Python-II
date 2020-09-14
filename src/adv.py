@@ -41,7 +41,7 @@ room = {
 }
 
 # Set initial items for each room
-room['outside'].add_item([items[0]])  # sword
+room['outside'].add_item(items[0])  # sword
 room['foyer'].add_item(items[1])  # book
 room['foyer'].add_item(items[5])  # gloves
 room['overlook'].add_item(items[2])  # chest
