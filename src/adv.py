@@ -87,6 +87,7 @@ room['treasure'].w_to = room['kitchen']
 # Main
 #
 
+
 # Function checks user input and if correct returns True, otherwise False
 def check_input(inp):
     inp = inp.lower().split(' ')
