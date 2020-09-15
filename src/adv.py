@@ -134,6 +134,7 @@ while True:
     user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'get/take item_name' or 'drop item_name', "
                        "('i' or 'inventory' to see your items): ").lower()
 
+    # Calling check_input to check if the player's input is in the correct form
     if check_input(user_input):
         user_input = user_input.split(' ')
     elif not check_input(user_input):
