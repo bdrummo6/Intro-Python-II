@@ -17,7 +17,6 @@ items = [
     Item('helmet', 'A helmet that can protect you in certain situations.'),
 ]
 
-
 # Declare all the rooms
 room = {
     'outside': Room("Outside Cave Entrance", "North of you, the cave mount beckons."),
@@ -135,11 +134,9 @@ while True:
     user_input = input("\nEnter a direction ('n', 's', 'e', 'w') to move or 'get/take item_name' or 'drop item_name', "
                        "('i' or 'inventory' to see your items): ").lower()
 
-    is_valid = check_input(user_input)
-
-    if is_valid:
+    if check_input(user_input):
         user_input = user_input.split(' ')
-    elif not is_valid:
+    elif not check_input(user_input):
         print('\nYour input is invalid, please try again!')
         continue
 
@@ -160,7 +157,3 @@ while True:
 
     if len(user_input) == 2:
         p1.set_items(user_input[0], user_input[1])
-
-
-
-
